@@ -62,6 +62,7 @@ flutter:
 
   assets:
     - assets/images/
+    
   fonts:
     - family: mplus1
       fonts:
