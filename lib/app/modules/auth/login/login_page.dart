@@ -21,6 +21,13 @@ class _LoginPageState extends VakinhaState<LoginPage, LoginController> {
   final _passwordEC = TextEditingController();
 
   @override
+  void dispose() {
+    _emailEC.dispose();
+    _passwordEC.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: VakinhaAppbar(
@@ -28,10 +35,10 @@ class _LoginPageState extends VakinhaState<LoginPage, LoginController> {
       ),
       backgroundColor: Colors.white,
       body: LayoutBuilder(
-        builder: (_, constraints) {
+        builder: (_, contraints) {
           return SingleChildScrollView(
             child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              constraints: BoxConstraints(minHeight: contraints.maxHeight),
               child: IntrinsicHeight(
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
@@ -40,65 +47,64 @@ class _LoginPageState extends VakinhaState<LoginPage, LoginController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Login',
-                            style: context.textTheme.headline6?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: context.theme.primaryColorDark)),
-                        const SizedBox(
-                          height: 30,
+                        Text(
+                          'Login',
+                          style: context.textTheme.headline6?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: context.theme.primaryColorDark,
+                          ),
                         ),
-                        VakinhaTextFormField(
+                        const SizedBox(height: 30),
+                        VakinhaTextformfield(
                           label: 'E-mail',
                           controller: _emailEC,
                           validator: Validatorless.multiple([
-                            Validatorless.required('E-mail obrigatório'),
-                            Validatorless.email('E-mail inválido')
+                            Validatorless.required('E-mail obrigatório!'),
+                            Validatorless.email('E-mail inválido!'),
                           ]),
                         ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        VakinhaTextFormField(
+                        const SizedBox(height: 30),
+                        VakinhaTextformfield(
                           label: 'Senha',
                           obscureText: true,
                           controller: _passwordEC,
                           validator: Validatorless.multiple([
-                            Validatorless.required('Senha obrigatório'),
-                            Validatorless.min(
-                                6, 'Semja deve conter pelo menos 6 caracteres')
+                            Validatorless.required('Senha obrigatória!'),
+                            Validatorless.min(6,
+                                'A senha deve conter pelo menos 6 caracteres!'),
                           ]),
                         ),
-                        const SizedBox(
-                          height: 50,
-                        ),
+                        const SizedBox(height: 50),
                         Center(
-                            child: VakinhaButton(
-                                width: context.width,
-                                label: 'ENTRAR',
-                                onPressed: () {
-                                  final formValid =
-                                      _formKey.currentState?.validate() ??
-                                          false;
-                                  if (formValid) {
-                                    controller.login(
-                                      email: _emailEC.text,
-                                      password: _passwordEC.text,
-                                    );
-                                  }
-                                })),
+                          child: VakinhaButton(
+                            label: 'Entrar',
+                            width: context.width,
+                            onpressed: () {
+                              final formValid =
+                                  _formKey.currentState?.validate() ?? false;
+                              if (formValid) {
+                                controller.login(
+                                  email: _emailEC.text,
+                                  password: _passwordEC.text,
+                                );
+                              }
+                            },
+                          ),
+                        ),
                         const Spacer(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text('Não possui uma conta?'),
+                            Text('Não possui uma conta?'),
                             TextButton(
-                                onPressed: () {
-                                  Get.toNamed('/auth/register');
-                                },
-                                child: const Text(
-                                  'Cadastre-se',
-                                  style: VakinhaUI.textBold,
-                                ))
+                              onPressed: () {
+                                Get.toNamed('/auth/register');
+                              },
+                              child: Text(
+                                'Cadastre-se',
+                                style: VakinhaUI.textBold,
+                              ),
+                            ),
                           ],
                         )
                       ],

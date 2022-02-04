@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class VakinhaButton extends StatelessWidget {
-  final VoidCallback? onPressed;
+  final VoidCallback onpressed;
   final String label;
   final double? width;
   final double height;
@@ -9,8 +9,8 @@ class VakinhaButton extends StatelessWidget {
 
   const VakinhaButton({
     Key? key,
+    required this.onpressed,
     required this.label,
-    required this.onPressed,
     this.width,
     this.height = 50,
     this.color,
@@ -22,7 +22,7 @@ class VakinhaButton extends StatelessWidget {
       width: width,
       height: height,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: onpressed,
         child: Text(
           label,
           style: const TextStyle(
@@ -31,7 +31,9 @@ class VakinhaButton extends StatelessWidget {
           ),
         ),
         style: ElevatedButton.styleFrom(
-            shape: const StadiumBorder(), primary: color),
+          primary: color,
+          shape: const StadiumBorder(),
+        ),
       ),
     );
   }

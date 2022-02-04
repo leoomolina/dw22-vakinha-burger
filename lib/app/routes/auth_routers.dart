@@ -17,6 +17,6 @@ class AuthRouters {
       name: '/auth/register',
       binding: RegisterBindings(),
       page: () => const RegisterPage(),
-    )
+    ),
   ];
 }

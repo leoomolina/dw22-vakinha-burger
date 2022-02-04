@@ -20,6 +20,7 @@ class _RegisterPageState
   final _nameEC = TextEditingController();
   final _emailEC = TextEditingController();
   final _passwordEC = TextEditingController();
+
   @override
   void dispose() {
     _nameEC.dispose();
@@ -44,78 +45,72 @@ class _RegisterPageState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Cadastro',
-                      style: context.textTheme.headline6?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: context.theme.primaryColorDark)),
                   Text(
-                    'Prencha os campos abaixo para criar o seu cadastro.',
-                    style: context.textTheme.bodyText1?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: context.theme.primaryColorDark),
+                    'Cadastro',
+                    style: context.textTheme.headline6?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: context.theme.primaryColorDark,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 30,
+                  Text(
+                    'Preencha os campos abaixo para criar o seu cadastro.',
+                    style: context.textTheme.bodyText1,
                   ),
-                  VakinhaTextFormField(
+                  const SizedBox(height: 30),
+                  VakinhaTextformfield(
                     label: 'Nome',
                     controller: _nameEC,
-                    validator: Validatorless.required('Nome obrigatório'),
+                    validator: Validatorless.required('Nome obrigatório!'),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  VakinhaTextFormField(
-                    label: 'E-mail',
+                  const SizedBox(height: 30),
+                  VakinhaTextformfield(
+                    label: 'Email',
                     controller: _emailEC,
                     validator: Validatorless.multiple([
                       Validatorless.required('E-mail obrigatório'),
-                      Validatorless.email('E-mail inválido')
+                      Validatorless.email('E-mail inválido!'),
                     ]),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  VakinhaTextFormField(
+                  const SizedBox(height: 30),
+                  VakinhaTextformfield(
                     label: 'Senha',
                     controller: _passwordEC,
                     obscureText: true,
                     validator: Validatorless.multiple([
-                      Validatorless.required('Senha obrigatória'),
+                      Validatorless.required('Senha obrigatória!'),
                       Validatorless.min(
-                          6, 'Senha deve conter pelo menos 6 caracteres')
+                          6, 'A senha deve conter pelo menos 6 caracteres!'),
                     ]),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  VakinhaTextFormField(
-                    label: 'Confirma senha',
+                  const SizedBox(height: 30),
+                  VakinhaTextformfield(
+                    label: 'Confirmar Senha',
                     obscureText: true,
                     validator: Validatorless.multiple([
-                      Validatorless.required('Confirma senha obrigatória'),
+                      Validatorless.required(
+                          'Confirmação de senha obrigatória!'),
                       Validatorless.compare(
-                          _passwordEC, 'Senha diferente de confirma a senha'),
+                          _passwordEC, 'As senhas estão diferentes!'),
                     ]),
                   ),
-                  const SizedBox(
-                    height: 50,
-                  ),
+                  const SizedBox(height: 30),
                   Center(
-                      child: VakinhaButton(
-                          width: context.width,
-                          label: 'Cadastrar',
-                          onPressed: () {
-                            final formValid =
-                                _formKey.currentState?.validate() ?? false;
-
-                            if (formValid) {
-                              controller.register(
-                                  name: _nameEC.text,
-                                  email: _emailEC.text,
-                                  password: _passwordEC.text);
-                            }
-                          })),
+                    child: VakinhaButton(
+                      width: double.infinity,
+                      label: 'Cadastrar',
+                      onpressed: () {
+                        final formValid =
+                            _formKey.currentState?.validate() ?? false;
+                        if (formValid) {
+                          controller.register(
+                            name: _nameEC.text,
+                            email: _emailEC.text,
+                            password: _passwordEC.text,
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),

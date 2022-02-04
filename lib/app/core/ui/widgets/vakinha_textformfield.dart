@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class VakinhaTextFormField extends StatelessWidget {
+class VakinhaTextformfield extends StatelessWidget {
   final String label;
   final TextEditingController? controller;
   final bool obscureText;
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onChange;
 
-  const VakinhaTextFormField(
-      {Key? key,
-      required this.label,
-      this.controller,
-      this.obscureText = false,
-      this.validator,
-      this.onChange})
-      : super(key: key);
+  const VakinhaTextformfield({
+    Key? key,
+    required this.label,
+    this.controller,
+    this.validator,
+    this.onChange,
+    this.obscureText = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

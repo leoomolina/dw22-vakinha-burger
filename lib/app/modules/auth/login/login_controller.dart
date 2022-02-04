@@ -20,30 +20,35 @@ class LoginController extends GetxController with LoaderMixin, MessagesMixin {
   @override
   void onInit() {
     loaderListener(_loading);
-    messageListerner(_message);
+    messageListener(_message);
     super.onInit();
   }
 
-  Future<void> login({
-    required String email,
-    required String password,
-  }) async {
+  Future<void> login({required String email, required String password}) async {
     try {
       _loading.toggle();
-
-      final userLoged = await _authRepository.login(email, password);
+      final userLogged = await _authRepository.login(email, password);
 
       final storage = GetStorage();
-      storage.write(Constants.USER_KEY, userLoged.id);
+      storage.write(Constants.USER_KEY, userLogged.id);
+
       _loading.toggle();
     } on UserNotFoundException catch (e, s) {
       _loading.toggle();
       log('Login ou senha inválidos', error: e, stackTrace: s);
-      MessageModel('Erro', 'Login ou senha inválidos', MessageType.error);
+      _message(MessageModel(
+        title: 'Erro',
+        message: 'Login ou senha inválidos',
+        type: MessageType.error,
+      ));
     } catch (e, s) {
       _loading.toggle();
-      log('Erro ao registrar usuário', error: e, stackTrace: s);
-      MessageModel('Erro', 'Erro ao registrar usuário', MessageType.error);
+      log('Login ou senha inválidos', error: e, stackTrace: s);
+      _message(MessageModel(
+        title: 'Erro',
+        message: 'Erro ao realizar login',
+        type: MessageType.error,
+      ));
     }
   }
 }

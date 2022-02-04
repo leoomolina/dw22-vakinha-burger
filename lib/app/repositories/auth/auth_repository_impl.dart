@@ -14,14 +14,16 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<UserModel> register(String name, String email, String password) async {
-    final result = await _restClient.post(
-        '/auth/register', {'name': name, 'email': email, 'password': password});
+    final result = await _restClient.post('/auth/register', {
+      'name': name,
+      'email': email,
+      'password': password,
+    });
 
     if (result.hasError) {
       var message = 'Erro ao registrar usuário';
-
       if (result.statusCode == 400) {
-        message = result.body['error'];
+        message = result.body['erro'];
       }
 
       log(
@@ -32,14 +34,18 @@ class AuthRepositoryImpl implements AuthRepository {
 
       throw RestClientException(message);
     }
-
-    return UserModel.fromJson('source');
+    return login(email, password);
   }
 
   @override
   Future<UserModel> login(String email, String password) async {
-    final result = await _restClient
-        .post('/auth/', {'email': email, 'password': password});
+    final result = await _restClient.post(
+      '/auth/',
+      {
+        'email': email,
+        'password': password,
+      },
+    );
 
     if (result.hasError) {
       if (result.statusCode == 403) {
@@ -52,13 +58,12 @@ class AuthRepositoryImpl implements AuthRepository {
       }
 
       log(
-        'Erro ao autenticar usuário (${result.statusCode}',
+        'Erro ao autenticar o usário (${result.statusCode})',
         error: result.statusText,
         stackTrace: StackTrace.current,
       );
       throw RestClientException('Erro ao autenticar usuário');
     }
-
     return UserModel.fromMap(result.body);
   }
 }
