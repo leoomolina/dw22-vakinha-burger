@@ -10,15 +10,14 @@ class MenuPage extends GetView<MenuController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return RefreshIndicator(
-        onRefresh: controller.refreshPage(),
+        onRefresh: controller.refreshPage,
         child: ListView.builder(
-            itemCount: controller.menu.length,
-            itemBuilder: (contex, index) {
-              final prod = controller.menu[index];
-              return ProductTile(
-                product: prod,
-              );
-            }),
+          itemCount: controller.menu.length,
+          itemBuilder: (context, index) {
+            final prod = controller.menu[index];
+            return ProductTile(product: prod);
+          },
+        ),
       );
     });
   }

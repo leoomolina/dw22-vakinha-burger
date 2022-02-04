@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vakinha_burger_mobile/app/core/services/auth_services.dart';
+import 'package:vakinha_burger_mobile/app/modules/menu/menu_bindings.dart';
 import 'package:vakinha_burger_mobile/app/modules/menu/menu_page.dart';
 
 class HomeController extends GetxController {
@@ -25,6 +26,7 @@ class HomeController extends GetxController {
       return GetPageRoute(
         settings: settings,
         page: () => const MenuPage(),
+        binding: MenuBindings(),
         transition: Transition.fadeIn,
       );
     }

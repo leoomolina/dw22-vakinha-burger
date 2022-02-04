@@ -95,12 +95,12 @@ class _LoginPageState extends VakinhaState<LoginPage, LoginController> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Não possui uma conta?'),
+                            const Text('Não possui uma conta?'),
                             TextButton(
                               onPressed: () {
                                 Get.toNamed('/auth/register');
                               },
-                              child: Text(
+                              child: const Text(
                                 'Cadastre-se',
                                 style: VakinhaUI.textBold,
                               ),

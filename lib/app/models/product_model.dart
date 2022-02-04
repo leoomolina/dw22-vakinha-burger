@@ -30,7 +30,7 @@ class ProductModel {
       name: map['name'] ?? '',
       description: map['description'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
-      image: map['image']?.toDouble() ?? 0.0,
+      image: map['image'] ?? '',
     );
   }
 

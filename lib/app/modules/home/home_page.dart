@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vakinha_burger_mobile/app/core/services/auth_services.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_appbar.dart';
 import 'package:vakinha_burger_mobile/app/modules/home/home_controller.dart';
 
@@ -15,7 +14,7 @@ class HomePage extends GetView<HomeController> {
         return BottomNavigationBar(
           onTap: (value) => controller.tabIndex = value,
           currentIndex: controller.tabIndex,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.list),
               label: 'Produtos',
