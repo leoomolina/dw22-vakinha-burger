@@ -19,7 +19,7 @@ class FinishedPage extends StatelessWidget {
             children: [
               const Spacer(),
               Image.asset(
-                'assets/image/logo_rounded.png',
+                'assets/images/logo_rounded.png',
                 width: context.widthTransformer(reducedBy: 50),
                 height: context.heightTransformer(reducedBy: 70),
               ),
