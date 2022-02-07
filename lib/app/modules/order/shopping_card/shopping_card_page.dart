@@ -27,24 +27,39 @@ class ShoppingCardPage extends GetView<ShoppingCardController> {
                   key: formKey,
                   child: Visibility(
                     visible: controller.products.isNotEmpty,
-                    replacement: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Carrinho',
-                            style: context.textTheme.headline6?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: context.theme.primaryColorDark,
-                            ),
+                    replacement: Scaffold(
+                      body: CustomScrollView(slivers: [
+                        SliverFillRemaining(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.asset(
+                                'assets/images/cart_null.png',
+                                width: context.widthTransformer(reducedBy: 50),
+                                height:
+                                    context.heightTransformer(reducedBy: 70),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                  'Ops! Seu carrinho está vazio.',
+                                  textAlign: TextAlign.center,
+                                  style: context.textTheme.headline6?.copyWith(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                            ],
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Text('Nenhum item adicionado no carrinho'),
-                        ],
-                      ),
+                        )
+                      ]),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
