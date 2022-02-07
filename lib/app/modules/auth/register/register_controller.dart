@@ -46,6 +46,7 @@ class RegisterController extends GetxController
         ),
       );
     } catch (e, s) {
+      _loading.toggle();
       log('Erro ao registrar usuário', error: e, stackTrace: s);
       _message(
         MessageModel(
