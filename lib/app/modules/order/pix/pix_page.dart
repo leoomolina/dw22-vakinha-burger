@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/formatter_helper.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_appbar.dart';
-import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_button.dart';
-import 'package:vakinha_burger_mobile/app/models/order.dart';
 import 'package:vakinha_burger_mobile/app/models/order_pix.dart';
 
 class PixPage extends StatelessWidget {
