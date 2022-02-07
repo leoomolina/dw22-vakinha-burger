@@ -22,6 +22,7 @@ class VakinhaBurgerMainApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Vakinha Burger',
       theme: VakinhaUI.theme,
+      debugShowCheckedModeBanner: false,
       initialBinding: ApplicationBindings(),
       getPages: [
         ...SplashRouters.routers,

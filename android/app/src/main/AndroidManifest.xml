@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.academiadoflutter.vakinha_burger_mobile">
    <application
-        android:label="vakinha_burger_mobile"
+        android:label="Vakinha Burger"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher_vakinha_burguer">
         <activity
             android:name=".MainActivity"
             android:exported="true"
